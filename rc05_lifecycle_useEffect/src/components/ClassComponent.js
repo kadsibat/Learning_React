@@ -2,7 +2,7 @@ import React from 'react'
 
 class ClassComponent extends React.Component {
 
-
+//!constructor zorunlu degil
   // constructor(props){
   //   super(props)
   //   this.state={count:0}
