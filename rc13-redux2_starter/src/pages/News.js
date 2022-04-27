@@ -10,10 +10,11 @@ import { useEffect } from "react";
 import { useDispatch,useSelector } from "react-redux";
 import { setLoading, clearLoading } from "../redux/actions/appActions";
 import { setNewsList } from "../redux/actions/newsActions";
-
+import loadingGif from "../assets/loading.gif"
 const News = () => {
   const dispatch = useDispatch()
   const {newsList} =useSelector(state=>state.news)
+  const {loading} =useSelector((state)=>state.app)
   const url =
     "https://newsapi.org/v2/everything?" +
     "q=Apple&" +
@@ -38,7 +39,18 @@ const News = () => {
   },[])
 
   return (
-    <Box
+    <>
+    {loading && (
+        <Box
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          height="100vh"
+        >
+          <img src={loadingGif} alt="gif" width="90%" height="800px" />
+        </Box>
+      )}
+    {!loading &&(<Box
       xs={{ d: "flex" }}
       display="flex"
       alignItems="center"
@@ -73,7 +85,9 @@ const News = () => {
           </CardActions>
         </Card>
       ))}
-    </Box>
+    </Box>)}
+    </>
+    
   );
 };
 
